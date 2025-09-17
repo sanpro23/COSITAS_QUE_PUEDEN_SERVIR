@@ -1,0 +1,38 @@
+$ nano archivo.txt  --  Abrir un archivo con Nano (desde terminal)
+
+- $  cat archivo.txt  --  Ver el contenido de un archivo sin editar
+
+- $ less archivo.txt  --  Si quieres ver con paginación
+ 
+- $ git show HEAD~1:archivo.txt  --  Ver una versión anterior del archivo con Git
+  				      Esto muestra el contenido del archivo en el commit anterior ().
+
+- $ mkdir --  para crear un directorio
+
+- $ pwd --  en que directorio estoy
+
+- $ ls -al  --  para listar directorios
+
+- $ cd "donde quieres ir"  --  para ir a directorios
+
+- $ cd ..  --  para volver a directorio anterior
+
+- $ clear --  para limpiar consola
+
+- $ git estatus --  dice el estado
+
+- $ git add /rm -- Añade archivos o cambios al área de preparación (staging area).
+ 		   Le dice a Git “esto quiero incluirlo en el próximo commit”.
+
+- $ git commit --  Guarda los cambios que has preparado (con git add ) en el historial del repositorio. Es como hacer 		   una “foto” del estado actual del proyecto.
+
+- $ git commit -m  --   -m "mensaje": añade un mensaje que describe los cambios.
+
+- $ git push  --  es el que usas para subir tus cambios locales a un repositorio remoto (como GitHub, GitLab, etc.). 	          Es como decirle a Git: “Ya terminé aquí, súbelo al servidor”.
+ 
+- $ git pull  --  es como decirle a Git: “Trae los últimos cambios del repositorio remoto y actualízame mi copia 	          local”.
+
+- $ git pull origin main  --  Estás trayendo los cambios de la rama main  del remoto llamado origin  y fusionándolos 			      con tu rama local.
+ 			      PRECAUCION: Lo ideal es:
+ 			                   1.Confirmar tus cambios (git commit) antes de hacer pull .
+ 					   2.O guardarlos temporalmente con git stash.
