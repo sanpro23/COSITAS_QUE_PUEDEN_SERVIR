@@ -1,0 +1,17 @@
+** start of script.js **
+
+function palindrome(str) {
+// Eliminar caracteres no alfanuméricos y convertir a minúsculas
+let cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, ""); 
+
+// Comparar la cadena limpia con su reverso
+let reversedStr = cleanStr.split("").reverse().join("");  // Invertir la cadena limpia
+
+// Comparar la cadena limpia con su reverso
+return cleanStr === reversedStr;
+}
+
+palindrome("eye");
+
+** end of script.js **
+

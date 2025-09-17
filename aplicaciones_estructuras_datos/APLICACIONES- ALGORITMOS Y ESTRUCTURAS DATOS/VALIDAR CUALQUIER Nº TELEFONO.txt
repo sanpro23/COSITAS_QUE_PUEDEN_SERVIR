@@ -1,0 +1,13 @@
+
+<script>
+function validarNumeroInternacional(str) {
+  // Elimina espacios y guiones
+  const limpio = str.replace(/[\s\-]/g, "");
+
+  // Expresión regular para formato E.164
+  const regex = /^\+?[1-9]\d{1,14}$/;
+
+  return regex.test(limpio);
+}
+
+<\script>

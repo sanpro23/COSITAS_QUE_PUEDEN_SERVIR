@@ -1,0 +1,58 @@
+function checkCashRegisterEuro(price, cash, cid) {
+  const DENOMINACIONES_EURO = [
+    ["500 EURO", 500.0],
+    ["200 EURO", 200.0],
+    ["100 EURO", 100.0],
+    ["50 EURO", 50.0],
+    ["20 EURO", 20.0],
+    ["10 EURO", 10.0],
+    ["5 EURO", 5.0],
+    ["2 EURO", 2.0],
+    ["1 EURO", 1.0],
+    ["50 CENT", 0.5],
+    ["20 CENT", 0.2],
+    ["10 CENT", 0.1],
+    ["5 CENT", 0.05],
+    ["2 CENT", 0.02],
+    ["1 CENT", 0.01]
+  ];
+
+  let cambio = parseFloat((cash - price).toFixed(2));
+  let totalEnCaja = parseFloat(cid.reduce((sum, [, amount]) => sum + amount, 0).toFixed(2));
+  let cambioEntregado = [];
+
+  if (cambio > totalEnCaja) {
+    return { status: "INSUFFICIENT_FUNDS", change: [] };
+  }
+
+  if (cambio === totalEnCaja) {
+    return { status: "CLOSED", change: cid };
+  }
+
+  let cajaReversa = cid.slice().reverse();
+
+  for (let i = 0; i < DENOMINACIONES_EURO.length; i++) {
+    let nombre = DENOMINACIONES_EURO[i][0];
+    let valor = DENOMINACIONES_EURO[i][1];
+    let cantidadDisponible = cajaReversa[i][1];
+    let cantidadUsada = 0;
+
+    while (cambio >= valor && cantidadDisponible >= valor) {
+      cambio -= valor;
+      cambio = parseFloat(cambio.toFixed(2));
+      cantidadDisponible -= valor;
+      cantidadUsada += valor;
+    }
+
+    if (cantidadUsada > 0) {
+      cambioEntregado.push([nombre, cantidadUsada]);
+    }
+  }
+
+  if (cambio > 0) {
+    return { status: "INSUFFICIENT_FUNDS", change: [] };
+  }
+
+  return { status: "OPEN", change: cambioEntregado };
+}
+

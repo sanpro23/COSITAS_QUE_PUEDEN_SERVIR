@@ -1,0 +1,58 @@
+** start of script.js **
+
+function checkCashRegister(price, cash, cid) {
+  const DENOMINACIONES = [  // Lista de denominaciones ordenadas de mayor a menor con su valor
+    ["ONE HUNDRED", 100.0],
+    ["TWENTY", 20.0],
+    ["TEN", 10.0],
+    ["FIVE", 5.0],
+    ["ONE", 1.0],
+    ["QUARTER", 0.25],
+    ["DIME", 0.1],
+    ["NICKEL", 0.05],
+    ["PENNY", 0.01]
+  ];
+  let cambio = parseFloat((cash - price).toFixed(2)); // Calculamos el cambio que hay que devolver
+  // Sumamos el total de dinero disponible en la caja
+  let totalEnCaja = parseFloat(cid.reduce((sum, [, amount]) => sum + amount, 0).toFixed(2));
+  let cambioEntregado = []; // donde guardaremos el cambio que se va a entregar
+
+  if (cambio > totalEnCaja) { // Si no hay suficiente dinero en caja para devolver el cambio
+    return { status: "INSUFFICIENT_FUNDS", change: [] };
+  }
+
+  if (cambio === totalEnCaja) { // Si el cambio exacto agota el dinero en caja
+    return { status: "CLOSED", change: cid };
+  }
+
+  let cajaReversa = cid.slice().reverse(); // Invertimos el arreglo cid para que coincida con el orden de DENOMINACIONES
+
+  for (let i = 0; i < DENOMINACIONES.length; i++) { // Si no pudimos devolver el cambio exacto
+    let nombre = DENOMINACIONES[i][0]; // Nombre de la moneda/billete
+    let valor = DENOMINACIONES[i][1];  // Valor de la moneda/billete
+    let cantidadDisponible = cajaReversa[i][1]; // Dinero disponible en esa denominación
+    let cantidadUsada = 0; // Cuánto se usará de esa denominación
+
+    while (cambio >= valor && cantidadDisponible >= valor) {
+      cambio -= valor;
+      cambio = parseFloat(cambio.toFixed(2));  // Evitamos errores de decimales
+      cantidadDisponible -= valor;
+      cantidadUsada += valor;
+    }
+
+    if (cantidadUsada > 0) { // Si usamos algo de esa denominación, lo añadimos al cambio entregado
+      cambioEntregado.push([nombre, cantidadUsada]);
+    }
+  }
+
+  if (cambio > 0) {  
+    return { status: "INSUFFICIENT_FUNDS", change: [] }; // si no pudimos devolver el cambio exacto
+  }
+
+  return { status: "OPEN", change: cambioEntregado }; // Si se pudo devolver el cambio correctamente
+}
+
+checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+
+** end of script.js **
+

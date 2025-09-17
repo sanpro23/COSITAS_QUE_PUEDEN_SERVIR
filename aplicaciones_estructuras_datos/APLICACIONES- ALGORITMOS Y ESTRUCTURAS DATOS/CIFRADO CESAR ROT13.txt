@@ -1,0 +1,73 @@
+** start of script.js **
+
+function rot13(str) {
+  let resultado = ""; // el resultado debe de ser una cadena decodificada
+  
+  for (let i = 0; i < str.length; i++) {  // bucle for  para recorrer cadena
+    
+    let character = str[i]; // [i] forma acceder a carácter específico dentro de cadena. i = indice
+    let codigo = str.charCodeAt(i);
+    
+    if (codigo >= 65 && codigo <= 90) { // Verificamos si es una letra mayúscula (A-Z)
+         let nuevoCodigo = ((codigo - 65 + 13) % 26) + 65;  //aplicamos ROT13
+      	 let letraCifrada = String.fromCharCode(nuevoCodigo);
+      		resultado += letraCifrada;
+    } else {
+      resultado += character;  // si no esta la dejamos igual
+    }
+  }
+        return resultado;
+ 
+  };
+
+rot13("SERR PBQR PNZC");
+
+** end of script.js **
+
+
+
+
+
+
+PARTE LOGICA
+
+Recorrer cada carácter de la cadena.
+
+Verificar si el carácter es una letra mayúscula (entre 'A' y 'Z').
+
+Aplicar el desplazamiento ROT13:
+
+    Convertir la letra a su código ASCII.
+
+    Restar el código de 'A' para obtener su posición en el alfabeto.
+
+    Sumar 13 y aplicar módulo 26 para mantenerlo dentro del rango.
+
+    Convertir de nuevo a carácter.
+
+Mantener los caracteres no alfabéticos sin cambios.
+
+Construir y devolver la cadena decodificada.
+
+
+ESTRUCTURA EN JAVASCRIPT
+
+function decodificarROT13(cadena) {
+  let resultado = "";
+
+  for (let i = 0; i < cadena.length; i++) {
+    let caracter = cadena[i];
+
+    if (/* es letra mayúscula */) {
+      // Obtener código ASCII
+      // Aplicar desplazamiento ROT13
+      // Convertir de nuevo a letra
+      // Añadir al resultado
+    } else {
+      // Añadir carácter sin cambios
+    }
+  }
+
+  return resultado;
+}
+
