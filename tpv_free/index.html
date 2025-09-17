@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROYECTO TPV FREE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>💰 PROYECTO TPV FREE</h1>
+
+  <form id="cash-form">
+    <label>Precio (€):
+      <input type="number" step="0.01" id="price" required>
+    </label>
+
+    <label>Efectivo entregado (€):
+      <input type="number" step="0.01" id="cash" required>
+    </label>
+
+    <label>Contenido de la caja (JSON):</label>
+    <textarea id="cid" rows="5">[["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]</textarea>
+
+    <button type="submit">Calcular cambio</button>
+  </form>
+
+  <div id="resultado"></div>
+
+  <table id="tabla-cambio" style="display:none;">
+    <thead>
+      <tr>
+        <th>Denominación</th>
+        <th>Cantidad (€)</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('cash-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const price = parseFloat(document.getElementById('price').value);
+      const cash = parseFloat(document.getElementById('cash').value);
+      const cid = JSON.parse(document.getElementById('cid').value);
+
+      const resultado = checkCashRegister(price, cash, cid);
+
+      // Mostrar estado
+      document.getElementById('resultado').innerText = "Estado: " + resultado.status;
+
+      // Mostrar tabla si hay cambio
+      const tabla = document.getElementById('tabla-cambio');
+      const tbody = tabla.querySelector('tbody');
+      tbody.innerHTML = "";
+
+      if (resultado.change.length > 0) {
+        resultado.change.forEach(([denominacion, cantidad]) => {
+          const fila = document.createElement('tr');
+          fila.innerHTML = `<td>${denominacion}</td><td>${cantidad.toFixed(2)} €</td>`;
+          tbody.appendChild(fila);
+        });
+        tabla.style.display = "table";
+      } else {
+        tabla.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
