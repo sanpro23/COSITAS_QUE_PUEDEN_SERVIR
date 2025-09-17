@@ -1,0 +1,14 @@
+** start of script.js **
+
+function dropElements(arr, func) {
+ 
+  for (let i = 0; i < arr.length; i++) {  // Recorremos el array
+    if (func(arr[i])) {  // Si la función devuelve true para este elemento
+      return arr.slice(i); // Devolvemos el resto del array desde aquí
+    }
+  }
+  return []; // Si no encontramos ningún elemento que cumpla la condición
+}
+
+** end of script.js **
+

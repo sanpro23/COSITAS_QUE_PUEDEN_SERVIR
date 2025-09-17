@@ -1,0 +1,39 @@
+** start of script.js **
+
+const Person = function(first, last) {
+  // Variables privadas
+  let firstName = first;
+  let lastName = last;
+
+  // Métodos públicos
+  this.getFirstName = function() {
+    return firstName;
+  };
+
+  this.getLastName = function() {
+    return lastName;
+  };
+
+  this.getFullName = function() {
+    return firstName + " " + lastName;
+  };
+
+  this.setFirstName = function(first) {
+    firstName = first;
+  };
+
+  this.setLastName = function(last) {
+    lastName = last;
+  };
+
+  this.setFullName = function(first, last) {
+    firstName = first;
+    lastName = last;
+  };
+};
+
+
+** end of script.js **
+
+
+constructor que encapsule las propiedades firstName y lastName de forma privada, y que solo permita acceder o modificarlas mediante los métodos que indicas.

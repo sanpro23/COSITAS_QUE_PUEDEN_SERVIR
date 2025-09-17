@@ -1,0 +1,20 @@
+** start of script.js **
+
+function convertHTML(str) {
+  // Mapa de caracteres peligrosos a sus entidades HTML
+  const entidades = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&apos;",
+  };
+
+  // Reemplazamos cualquier aparición de &, <, >, " o '
+  // usando una función que mira el mapa
+  return str.replace(/[&<>"']/g, (car) => entidades[car]);
+}
+
+
+** end of script.js **
+

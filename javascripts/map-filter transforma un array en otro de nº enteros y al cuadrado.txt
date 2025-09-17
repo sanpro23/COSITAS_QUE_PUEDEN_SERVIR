@@ -1,0 +1,21 @@
+** start of script.js **
+
+const squareList = arr => {
+  return arr
+    .filter(num => num > 0 && Number.isInteger(num)) // solo enteros positivos
+    .map(num => num ** 2); // elevar al cuadrado
+};
+
+const squaredIntegers = squareList([-3, 4.8, 5, 3, -3.2]);
+console.log(squaredIntegers);
+
+** end of script.js **
+
+
+
+ Lógica que deberías seguir
+1. 	Filtrar el arreglo para quedarte solo con los números que sean:
+• 	mayores que 0
+• 	enteros ( es útil aquí)
+2. 	Mapear esos números para devolver su cuadrado ( o ).
+3. 	Devolver el nuevo arreglo.

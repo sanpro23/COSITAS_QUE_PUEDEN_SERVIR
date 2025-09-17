@@ -1,0 +1,10 @@
+** start of script.js **
+
+function booWho(bool) {
+  return typeof bool === "boolean";
+}
+
+booWho(null);
+
+** end of script.js **
+

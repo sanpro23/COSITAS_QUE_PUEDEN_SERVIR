@@ -1,0 +1,11 @@
+** start of script.js **
+
+function sentensify(str) {
+  // Divide la cadena en un array usando cualquier carácter que no sea letra o número como separador y Une las palabras del array con un espacio entre ellas.
+  return str.split(/[^A-Za-z0-9]+/).join(" ");
+}
+
+sentensify("May-the-force-be-with-you");
+
+** end of script.js **
+

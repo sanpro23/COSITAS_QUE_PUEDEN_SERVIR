@@ -1,0 +1,29 @@
+** start of script.js **
+
+function myReplace(str, before, after) {
+  // Comprobar si la primera letra de 'before' está en mayúscula
+  const isCapitalized = before[0] === before[0].toUpperCase();
+
+  // Ajustar la capitalización de 'after' para que coincida con 'before'
+  if (isCapitalized) {
+    // Si 'before' empieza en mayúscula, poner mayúscula a 'after'
+    after = after[0].toUpperCase() + after.slice(1);
+  } else {
+    // Si 'before' empieza en minúscula, poner minúscula a 'after'
+    after = after[0].toLowerCase() + after.slice(1);
+  }
+
+  // Reemplazar la primera aparición exacta de 'before' por 'after' en la frase
+  return str.replace(before, after);
+}
+
+// Ejemplo de uso:
+console.log(
+  myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped")
+);
+// Salida esperada: "A quick brown fox leaped over the lazy dog"
+
+
+
+** end of script.js **
+

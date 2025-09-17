@@ -1,0 +1,46 @@
+** start of script.js **
+
+function translatePigLatin(str) {
+  // Si empieza por vocal, añadimos "way"
+  if (/^[aeiou]/.test(str)) {
+    return str + "way";
+  } else {
+    // Encontrar el grupo de consonantes iniciales
+    const consonants = str.match(/^[^aeiou]+/)[0];
+    // Moverlo al final y añadir "ay"
+    return str.slice(consonants.length) + consonants + "ay";
+  }
+}
+
+console.log(translatePigLatin("consonant")); // "onsonantcay"
+console.log(translatePigLatin("apple"));     // "appleway"
+
+
+** end of script.js **
+
+
+
+
+
+🐽 ¿Qué es Pig Latin?
+
+Es un juego de palabras en inglés donde transformas las palabras siguiendo unas reglas simples. No es un idioma real, sino una forma divertida de “codificar” lo que dices para que suene gracioso o secreto.
+📏 Reglas básicas
+
+    Si la palabra empieza por vocal (a, e, i, o, u) → Simplemente añades "way" o "yay" al final. Ejemplo:
+
+        "apple" → "appleway"
+
+        "orange" → "orangeway"
+
+    Si la palabra empieza por consonante o grupo de consonantes → Mueves esas consonantes al final y añades "ay". Ejemplo:
+
+        "pig" → "igpay"
+
+        "glove" → "oveglay"
+
+    Si quieres ser más “pro”
+
+        Mantienes la puntuación y mayúsculas.
+
+        Puedes usar "ay", "yay", "way" según la variante.

@@ -1,0 +1,21 @@
+** start of script.js **
+
+function diffArray(arr1, arr2) {
+  return arr1
+    .concat(arr2) // une los dos arrays
+    .filter(item => !arr1.includes(item) || !arr2.includes(item)); // excluye los nº distintos
+}
+
+diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
+
+** end of script.js **
+
+
+
+Lógica paso a paso
+
+    Unir los dos arreglos en uno solo.
+
+    Filtrar los elementos que no están en ambos.
+
+        Es decir, eliminar los que aparecen en los dos.

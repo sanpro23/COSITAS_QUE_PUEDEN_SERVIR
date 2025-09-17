@@ -1,0 +1,14 @@
+** start of script.js **
+
+function reverseString(str) {
+  let rts = "";
+  for (let i = str.length - 1; i >= 0; i-- ) {
+    rts += str[i];
+  }
+  return rts;
+}
+
+reverseString('hello');
+
+** end of script.js **
+

@@ -1,0 +1,11 @@
+** start of script.js **
+
+function splitify(str) {
+  // Dividir en cada carácter que no sea letra ni número
+  return str.split(/[^A-Za-z0-9]+/);
+}
+
+splitify("Hello World,I-am code");
+
+** end of script.js **
+

@@ -1,0 +1,16 @@
+** start of script.js **
+
+function getIndexToIns(arr, num) {
+  let ordenado = [...arr].sort((a, b) => a - b);
+  for (let i = 0; i < ordenado.length; i++) {
+    if (num <= ordenado[i]) {
+      return i;
+    }
+  }
+  return ordenado.length;
+}
+
+getIndexToIns([40, 60], 50);
+
+** end of script.js **
+

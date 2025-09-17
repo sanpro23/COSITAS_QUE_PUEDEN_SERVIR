@@ -1,0 +1,32 @@
+** start of script.js **
+
+function sumFibs(num) {
+  // Primeros dos números de Fibonacci
+  let prev = 0;
+  let curr = 1;
+  let total = 0;
+
+  
+  while (curr <= num) { // Mientras el número actual no supere el límite dado
+    
+    if (curr % 2 !== 0) { // Si el número actual es impar, lo sumamos al total
+      total += curr;
+    }
+                              // Avanzamos en la secuencia
+    const next = prev + curr; // siguiente número = suma de los dos anteriores
+    prev = curr;              // movemos el "prev" al actual
+    curr = next;              // el "curr" pasa a ser el siguiente
+  }
+
+  
+  return total;  // Devolvemos la suma total
+}
+
+// Ejemplos de uso:
+console.log(sumFibs(10)); // 10 → (1 + 1 + 3 + 5)
+console.log(sumFibs(4));  // 5  → (1 + 1 + 3)
+console.log(sumFibs(1000)); // 1785
+
+
+** end of script.js **
+

@@ -1,0 +1,20 @@
+** start of script.js **
+
+
+function destroyer(arr, ...args) {
+  return arr.filter(item => !args.includes(item));
+}
+
+destroyer([1, 2, 3, 1, 2, 3], 2, 3);
+
+** end of script.js **
+
+
+
+ ¿Qué hace este código?
+
+    ...args captura todos los argumentos adicionales como un arreglo.
+
+    filter() recorre arr y conserva solo los elementos que no están en args.
+
+    includes(item) verifica si el elemento actual debe eliminarse.

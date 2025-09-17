@@ -1,0 +1,13 @@
+** start of script.js **
+
+function bouncer(arr) {
+   return arr.filter(function(valor) {
+    return Boolean(valor); // Solo pasa si es truthy
+  });
+}
+
+
+bouncer([7, 'ate', '', false, 9]);
+
+** end of script.js **
+

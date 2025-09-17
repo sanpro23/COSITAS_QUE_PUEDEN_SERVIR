@@ -1,0 +1,9 @@
+** start of script.js **
+
+function nonMutatingSplice(cities) {
+
+  return cities.slice(0, 3);
+}
+
+** end of script.js **
+

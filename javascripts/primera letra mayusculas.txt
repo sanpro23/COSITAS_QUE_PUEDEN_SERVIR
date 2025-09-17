@@ -1,0 +1,14 @@
+** start of script.js **
+
+function titleCase(str) {
+  let palabras = str.toLowerCase().split(" ");
+ for (let i = 0; i < palabras.length; i++) {
+   palabras[i] = palabras[i][0].toUpperCase() + palabras[i].slice(1);
+ }return palabras.join(" ");
+
+}
+
+titleCase("I'm a little tea pot");
+
+** end of script.js **
+

@@ -1,0 +1,27 @@
+** start of script.js **
+
+function smallestCommons(arr) {
+  
+  const [min, max] = arr.sort((a, b) => a - b); // Ordenamos para obtener el menor y el mayor
+
+
+  function mcd(a, b) {    // Función para calcular el MCD (máximo común divisor)
+    return b === 0 ? a : mcd(b, a % b);
+  }
+
+  
+  function mcm(a, b) {  // Función para calcular el MCM de dos números
+    return (a * b) / mcd(a, b);
+  }
+
+  
+  let multiple = min;  // Calculamos el MCM de todo el rango
+  for (let i = min + 1; i <= max; i++) {
+    multiple = mcm(multiple, i);
+  }
+
+  return multiple;
+}
+
+** end of script.js **
+

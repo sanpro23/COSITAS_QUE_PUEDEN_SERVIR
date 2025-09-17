@@ -1,0 +1,10 @@
+** start of script.js **
+
+
+function urlSlug(title) {
+return title.toLowerCase().split(/[^A-Za-z0-9]+/).filter(Boolean).join("-");
+}
+urlSlug("A Mind Needs Books Like A Sword Needs A Whetstone");
+
+** end of script.js **
+

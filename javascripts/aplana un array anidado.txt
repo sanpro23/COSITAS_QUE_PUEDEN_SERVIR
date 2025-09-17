@@ -1,0 +1,19 @@
+** start of script.js **
+
+function steamrollArray(arr) {
+  let result = [];
+
+  arr.forEach(elemento => {
+    if (Array.isArray(elemento)) {  // Si es un array, lo aplanamos recursivamente y lo añadimos
+       result = result.concat(steamrollArray(elemento));
+    } else {
+      result.push(elemento);  // Si no es un array, lo añadimos directamente
+    }
+  });
+
+  return result;
+}
+
+
+** end of script.js **
+

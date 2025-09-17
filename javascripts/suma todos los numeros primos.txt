@@ -1,0 +1,49 @@
+** start of script.js **
+
+function sumPrimes(num) {
+  
+  function esPrimo(n) { //funcion comprueba si nº es primo
+    if (n < 2) return false; // Los primos son mayores que 1
+    for (let i = 2; i <= Math.sqrt(n); i++) {
+      if (n % i === 0) return false; // Si tiene divisor, no es primo
+    }
+    return true;
+  }
+
+  let total = 0;
+
+  
+  for (let i = 2; i <= num; i++) { // Recorremos desde 2 hasta num
+    if (esPrimo(i)) {
+      total += i; // Si es primo, lo sumamos
+    }
+  }
+
+  return total;
+}
+
+// Ejemplos de uso:
+console.log(sumPrimes(10)); // 17 → (2 + 3 + 5 + 7)
+console.log(sumPrimes(20)); // 77 → (2 + 3 + 5 + 7 + 11 + 13 + 17 + 19)
+
+
+** end of script.js **
+
+
+
+Explicación parte por parte del bucle for (let i = 2; i <= Math.sqrt(n); i++) {
+      if (n % i === 0) return false; // Si tiene divisor, no es primo
+    }
+
+   for (let i = 2; i <= Math.sqrt(n); i++) {
+    // Recorremos todos los posibles divisores de n
+    // Empezamos en 2 porque 1 divide a todos los números y no sirve para descartar primos
+    // Terminamos en Math.sqrt(n) porque si n tiene un divisor mayor que su raíz cuadrada,
+    // el otro divisor correspondiente será menor que la raíz cuadrada.
+    
+    if (n % i === 0) return false;
+    // Si encontramos que n es divisible entre i (resto 0),
+    // significa que n tiene un divisor distinto de 1 y de sí mismo.
+    // Por lo tanto, NO es primo y devolvemos false inmediatamente.
+}
+

@@ -1,0 +1,23 @@
+** start of script.js **
+
+function pairElement(str) {
+  // Mapa de pares: cada base tiene su complementaria
+  const pairs = {
+    A: "T",
+    T: "A",
+    C: "G",
+    G: "C",
+  };
+
+  // Recorremos cada carácter y devolvemos [base, complementaria]
+  const result = [];
+  for (const base of str) {
+    // (Opcional) podrías validar aquí que la base existe en el mapa
+    result.push([base, pairs[base]]);
+  }
+
+  return result;
+}
+
+** end of script.js **
+

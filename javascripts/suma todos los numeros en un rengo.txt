@@ -1,0 +1,16 @@
+** start of script.js **
+
+function sumAll(arr) {
+  const min = Math.min(...arr); // Encuentra el menor
+  const max = Math.max(...arr); // Encuentra el mayor
+  let total = 0;
+  for (let i = min; i <= max; i++) { //recorre desde el menor hasta el mayor.
+    total += i; //va sumando cada número.
+  }
+  return total;
+}
+console.log(sumAll([4, 1]));
+sumAll([1, 4]);
+
+** end of script.js **
+
