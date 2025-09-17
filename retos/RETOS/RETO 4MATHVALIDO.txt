@@ -1,0 +1,42 @@
+let min = 0;
+let max = 100;
+let nivelAmenaza = Math.floor(Math.random() * (max - min + 1)) + min; a*
+console.log("Nivel de amenaza:", nivelAmenaza);						
+
+let modoSigiloActivado = false;
+let escudoActivado = false;
+
+if (nivelAmenaza >= 80) {
+  escudoActivado = true;
+  console.log("Amenaza crítica, escudo activado");
+} else if (nivelAmenaza >= 50) {
+  if (modoSigiloActivado) {  //si la variable ya es booleana no hace falta compararla con true.
+    console.log("Amenaza media, se mantiene en modo sigilo, no es necesario activar el escudo");
+  } else {
+    escudoActivado = true;
+    console.log("Amenaza media, escudo activado");
+  }
+} else {
+  if (modoSigiloActivado) { //sivariable es booleana no hace falta compararla con true EJ:(===true)
+    console.log("Amenaza baja, no hay peligro inmediato y se mantiene en modo sigilo");
+  } else {
+    console.log("Amenaza baja, no hay peligro inmediato");
+  }
+}
+
+if (escudoActivado) {   // como es booleano no hace falta poner ( ===true)
+  console.log("Escudo activado = true");
+} else {
+  console.log("Escudo activado = falso");
+}
+
+
+
+
+
+a*  Math.floor redondea hacia abajo para obtener un numero entero;
+	Math.random genera un numero decimal aleatorio;
+	(max -min +1) se asegua de que max aparezca;
+	+ min se asegura que empice en uno y no en 0;
+ 
+	

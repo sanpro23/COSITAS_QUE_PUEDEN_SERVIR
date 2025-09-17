@@ -1,0 +1,9 @@
+
+let nombreDev = "Antonio";
+let energiaInicial = 50;
+let aumentoDeEnergia = 25;
+let energiaTotal = energiaInicial + aumentoDeEnergia;
+let mensajeFinal = `DevHero ${nombreDev} ha alcanzado un nivel de energía de ${energiaTotal} unidades.`;
+console.log(mensajeFinal);
+
+

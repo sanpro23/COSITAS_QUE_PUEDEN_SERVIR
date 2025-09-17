@@ -1,0 +1,13 @@
+<script>
+function invocarPoderes(nombre, superPoder) {
+    return `${nombre} usó ${superPoder}`;
+}
+let mensaje = invocarPoderes("Superman", "super fuerza");
+console.log(mensaje);
+
+function multiplicarAtaque(ataqueBase, multiplicador) {
+  return ataqueBase * multiplicador;  
+}
+let dañoFinal = multiplicarAtaque(10, 5);
+console.log(dañoFinal);
+</script>

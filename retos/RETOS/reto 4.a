@@ -1,0 +1,27 @@
+let min = 0;
+let max = 100;
+let nivelAmenaza = Math.floor(Math.random() * (max - min + 1)) + min;
+console.log("Nivel de amenaza:", nivelAmenaza);
+
+const modoSigiloActivado = false;
+let escudoActivado = false;
+
+if (nivelAmenaza >= 80) {
+  escudoActivado = true;
+  console.log("Amenaza crítica, escudo activado");
+} else if (nivelAmenaza >= 50 && nivelAmenaza <= 79) {
+  if (modoSigiloActivado) {
+    console.log("Amenaza media, se mantiene en modo sigilo, no es necesario activar el escudo");
+  } else {
+    escudoActivado = true;
+    console.log("Amenaza media, escudo activado");
+  }
+} else {
+  if (modoSigiloActivado) {
+    console.log("Amenaza baja, no hay peligro inmediato y se mantiene en modo sigilo");
+  } else {
+    console.log("Amenaza baja, no hay peligro inmediato");
+  }
+}
+
+console.log("¿Escudo activado?", escudoActivado);
