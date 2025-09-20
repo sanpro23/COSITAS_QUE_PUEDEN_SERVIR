@@ -1,68 +1,106 @@
+/* === Base === */
+:root {
+  --color-bg: #f4f4f4;
+  --color-primary: #0078d4;
+  --color-primary-dark: #005a9e;
+  --color-text: #333;
+  --color-white: #fff;
+  --color-border: #ddd;
+  --font-main: Arial, sans-serif;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: var(--font-main);
   margin: 20px;
-  background: #f4f4f4;
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
+/* === Encabezado === */
 h1 {
-  color: #333;
   text-align: center;
+  color: var(--color-text);
 }
 
+/* === Formulario === */
 form {
-  background: white;
-  padding: 15px;
-  border-radius: 5px;
-  max-width: 400px;
+  background: var(--color-white);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 420px;
   margin: auto;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
 }
 
 label {
   display: block;
-  margin: 10px 0;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
-textarea, input {
+input,
+textarea {
   width: 100%;
-  padding: 5px;
+  padding: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
+/* === Botón === */
 button {
-  margin-top: 10px;
-  padding: 8px 12px;
-  background: #0078d4;
-  color: white;
+  margin-top: 15px;
+  padding: 10px;
+  background: var(--color-primary);
+  color: var(--color-white);
   border: none;
+  border-radius: 4px;
   cursor: pointer;
   width: 100%;
+  font-weight: bold;
+  transition: background 0.3s ease;
 }
 
-button:hover {
-  background: #005a9e;
+button:hover,
+button:focus {
+  background: var(--color-primary-dark);
+  outline: none;
 }
 
+/* === Resultado === */
 #resultado {
   margin-top: 20px;
   text-align: center;
   font-weight: bold;
+  font-size: 1.1em;
 }
 
+/* === Tabla de cambio === */
 table {
   margin: 20px auto;
   border-collapse: collapse;
   width: 80%;
-  background: white;
+  background: var(--color-white);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
+th,
+td {
+  border: 1px solid var(--color-border);
+  padding: 10px;
   text-align: center;
 }
 
 th {
-  background: #0078d4;
-  color: white;
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* === Utilidades === */
+.hidden {
+  display: none;
 }

@@ -7,64 +7,95 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>💰 PROYECTO TPV FREE</h1>
+  <header>
+    <h1>💰 PROYECTO TPV FREE</h1>
+  </header>
 
-  <form id="cash-form">
-    <label>Precio (€):
-      <input type="number" step="0.01" id="price" required>
-    </label>
+  <main>
+    <section aria-labelledby="form-title">
+      <h2 id="form-title">Datos de la operación</h2>
+      <form id="cash-form">
+        <div class="form-group">
+          <label for="price">Precio (€):</label>
+          <input type="number" step="0.01" id="price" required>
+        </div>
 
-    <label>Efectivo entregado (€):
-      <input type="number" step="0.01" id="cash" required>
-    </label>
+        <div class="form-group">
+          <label for="cash">Efectivo entregado (€):</label>
+          <input type="number" step="0.01" id="cash" required>
+        </div>
 
-    <label>Contenido de la caja (JSON):</label>
-    <textarea id="cid" rows="5">[["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]</textarea>
+        <div class="form-group">
+          <label for="cid">Contenido de la caja (JSON):</label>
+          <textarea id="cid" rows="5">[["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]</textarea>
+        </div>
 
-    <button type="submit">Calcular cambio</button>
-  </form>
+        <button type="submit">Calcular cambio</button>
+      </form>
+    </section>
 
-  <div id="resultado"></div>
+    <section aria-labelledby="result-title">
+      <h2 id="result-title">Resultado</h2>
+      <div id="resultado" aria-live="polite"></div>
 
-  <table id="tabla-cambio" style="display:none;">
-    <thead>
-      <tr>
-        <th>Denominación</th>
-        <th>Cantidad (€)</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+      <table id="tabla-cambio" class="hidden">
+        <thead>
+          <tr>
+            <th>Denominación</th>
+            <th>Cantidad (€)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 TPV Free. Proyecto educativo.</p>
+  </footer>
 
   <script src="script.js"></script>
   <script>
     document.getElementById('cash-form').addEventListener('submit', function(e) {
       e.preventDefault();
+
       const price = parseFloat(document.getElementById('price').value);
       const cash = parseFloat(document.getElementById('cash').value);
-      const cid = JSON.parse(document.getElementById('cid').value);
+      let cid;
+
+      try {
+        cid = JSON.parse(document.getElementById('cid').value);
+      } catch (error) {
+        document.getElementById('resultado').innerText = "❌ Error en el formato JSON.";
+        return;
+      }
 
       const resultado = checkCashRegister(price, cash, cid);
+      renderResultado(resultado.status);
+      renderTabla(resultado.change);
+    });
 
-      // Mostrar estado
-      document.getElementById('resultado').innerText = "Estado: " + resultado.status;
+    function renderResultado(status) {
+      document.getElementById('resultado').innerText = "Estado: " + status;
+    }
 
-      // Mostrar tabla si hay cambio
+    function renderTabla(change) {
       const tabla = document.getElementById('tabla-cambio');
       const tbody = tabla.querySelector('tbody');
       tbody.innerHTML = "";
 
-      if (resultado.change.length > 0) {
-        resultado.change.forEach(([denominacion, cantidad]) => {
+      if (change.length > 0) {
+        change.forEach(([denominacion, cantidad]) => {
           const fila = document.createElement('tr');
           fila.innerHTML = `<td>${denominacion}</td><td>${cantidad.toFixed(2)} €</td>`;
           tbody.appendChild(fila);
         });
-        tabla.style.display = "table";
+        tabla.classList.remove("hidden");
       } else {
-        tabla.style.display = "none";
+        tabla.classList.add("hidden");
       }
-    });
+    }
   </script>
 </body>
 </html>
+
