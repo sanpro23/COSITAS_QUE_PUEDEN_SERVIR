@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PROYECTO TPV FREE</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
@@ -12,42 +12,36 @@
   </header>
 
   <main>
-    <section aria-labelledby="form-title">
-      <h2 id="form-title">Datos de la operación</h2>
-      <form id="cash-form">
-        <div class="form-group">
-          <label for="price">Precio (€):</label>
-          <input type="number" step="0.01" id="price" required>
-        </div>
+    <form id="cash-form">
+      <div class="form-group">
+        <label for="price">Precio (€):</label>
+        <input type="number" step="0.01" id="price" required min="0" />
+      </div>
 
-        <div class="form-group">
-          <label for="cash">Efectivo entregado (€):</label>
-          <input type="number" step="0.01" id="cash" required>
-        </div>
+      <div class="form-group">
+        <label for="cash">Efectivo entregado (€):</label>
+        <input type="number" step="0.01" id="cash" required min="0" />
+      </div>
 
-        <div class="form-group">
-          <label for="cid">Contenido de la caja (JSON):</label>
-          <textarea id="cid" rows="5">[["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]</textarea>
-        </div>
+      <div class="form-group">
+        <label for="cid">Contenido de la caja (JSON):</label>
+        <textarea id="cid" rows="5">[["QUINIENTOS EUROS",500],["DOSCIENTOS EUROS",200],["CIEN EUROS",100],["CINCUENTA EUROS",50],["VEINTE EUROS",20],["DIEZ EUROS",10],["CINCO EUROS",5],["UNO EURO",1],["CINCUENTA CENTIMOS",0.5],["VEINTE CENTIMOS",0.2],["DIEZ CENTIMOS",0.1],["CINCO CENTIMOS",0.05],["DOS CENTIMOS",0.02],["UN CENTIMO",0.01]]</textarea>
+      </div>
 
-        <button type="submit">Calcular cambio</button>
-      </form>
-    </section>
+      <button type="submit">Calcular cambio</button>
+    </form>
 
-    <section aria-labelledby="result-title">
-      <h2 id="result-title">Resultado</h2>
-      <div id="resultado" aria-live="polite"></div>
+    <div id="resultado" class="estado" aria-live="polite"></div>
 
-      <table id="tabla-cambio" class="hidden">
-        <thead>
-          <tr>
-            <th>Denominación</th>
-            <th>Cantidad (€)</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </section>
+    <table id="tabla-cambio" class="hidden">
+      <thead>
+        <tr>
+          <th>Denominación</th>
+          <th>Cantidad (€)</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </main>
 
   <footer>
@@ -55,47 +49,7 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    document.getElementById('cash-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const price = parseFloat(document.getElementById('price').value);
-      const cash = parseFloat(document.getElementById('cash').value);
-      let cid;
-
-      try {
-        cid = JSON.parse(document.getElementById('cid').value);
-      } catch (error) {
-        document.getElementById('resultado').innerText = "❌ Error en el formato JSON.";
-        return;
-      }
-
-      const resultado = checkCashRegister(price, cash, cid);
-      renderResultado(resultado.status);
-      renderTabla(resultado.change);
-    });
-
-    function renderResultado(status) {
-      document.getElementById('resultado').innerText = "Estado: " + status;
-    }
-
-    function renderTabla(change) {
-      const tabla = document.getElementById('tabla-cambio');
-      const tbody = tabla.querySelector('tbody');
-      tbody.innerHTML = "";
-
-      if (change.length > 0) {
-        change.forEach(([denominacion, cantidad]) => {
-          const fila = document.createElement('tr');
-          fila.innerHTML = `<td>${denominacion}</td><td>${cantidad.toFixed(2)} €</td>`;
-          tbody.appendChild(fila);
-        });
-        tabla.classList.remove("hidden");
-      } else {
-        tabla.classList.add("hidden");
-      }
-    }
-  </script>
 </body>
 </html>
+
 
